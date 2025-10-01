@@ -7,10 +7,12 @@ Run the following commands to build and run the docker image.
 First build the image:
 ```
 docker build -t cla-nav2:latest .
+```
 
 Add X11 connections for GUI apps:
 ```
 xhost +local:root
+```
 
 Then start the container:
 ```
