@@ -45,6 +45,11 @@ ros2 run turtlebot3_teleop teleop_keyboard
 ## RViz2 / Map Saving
 - Run this in terminal 3
 
+Launch Docker Container:
+```
+docker compose exec nav2 bash
+```
+
 Save Maps:
 ```
 ros2 run nav2_map_server map_saver_cli -f /root/data/my_map
