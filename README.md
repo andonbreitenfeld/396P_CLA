@@ -1,25 +1,51 @@
-# 396P_CLA
-CLAude course project for ME 396P - Clara Summerford, Luke Pronga, & Andon Breitenfeld
+# CLAude — ME 396P Nav2 Demo 
 
-## First Time Setup
-Run the following commands to build and run the docker image.
+## Docker Setup
+## Prereqs
+- Docker + Docker Compose installed
+- Ubuntu host with X11 (default on most desktops)
+- 3 Terminals opened
 
-First build the image:
-```
-docker build -t cla-nav2:latest .
-```
-
-Add X11 connections for GUI apps:
+## GUI permission (run every session)
 ```
 xhost +local:root
 ```
 
-Then start the container:
+## Build Docker Image
 ```
-docker run -it --rm \
-  --env DISPLAY=$DISPLAY \
-  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-  --name nav2 \
-  cla-nav2:latest
+docker compose up --build -d
+```
 
+## Gazebo
+- Run this in terminal 1
+
+Launch Docker Container:
+```
+docker compose exec nav2 bash
+```
+
+Launch Gazebo:
+```
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+```
+
+## Teleop Control
+- Run this in terminal 2
+
+Launch Docker Container:
+```
+docker compose exec nav2 bash
+```
+
+Launch Teleop Control:
+```
+ros2 run turtlebot3_teleop teleop_keyboard
+```
+
+## RViz2 / Map Saving
+- Run this in terminal 3
+
+Save Maps:
+```
+ros2 run nav2_map_server map_saver_cli -f /root/data/my_map
 ```
