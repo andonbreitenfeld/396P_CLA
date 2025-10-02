@@ -1,4 +1,4 @@
-# CLAude — ME 396P Nav2 Demo
+# CLA — ME 396P Nav2 Demo
 
 This demo shows how to run the Navigation2 stack in simulation with TurtleBot3, using Docker.  
 The workflow has **two stages**:
