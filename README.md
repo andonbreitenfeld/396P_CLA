@@ -66,13 +66,13 @@ ros2 run nav2_map_server map_saver_cli -f /root/data/my_map
 - Relaunch Gazebo as before
 - Start Nav2 with saved map:
 
-'''
+```
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
-'''
+```
 
-'''
+```
 ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=path/to/my_map.yaml
-'''
+```
 
 ## In Rviz
 If the map does not appear:
