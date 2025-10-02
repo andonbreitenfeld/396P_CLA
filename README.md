@@ -64,11 +64,12 @@ ros2 run nav2_map_server map_saver_cli -f /root/data/my_map
 ## Stage 2 - Navigation
 - Stop Gazebo, RViz, and Teleop (Ctrl+C in each terminal)
 - Relaunch Gazebo as before
-- Start Nav2 with saved map:
 
 ```
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
+
+- Start Nav2 with saved map:
 
 ```
 ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=path/to/my_map.yaml
