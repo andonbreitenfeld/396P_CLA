@@ -72,7 +72,7 @@ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 - Start Nav2 with saved map:
 
 ```
-ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=path/to/my_map.yaml
+ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$(pwd)/data/my_map.yaml
 ```
 
 ## In Rviz
