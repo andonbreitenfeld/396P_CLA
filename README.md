@@ -78,6 +78,6 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:
 ## In Rviz
 If the map does not appear:
 - Change the /map topic from volatile to transient local.
-Navigate:
+### Navigate:
 - Use 2D Pose Estimate to set robot’s initial pose
 - Use Nav2 Goal to send the robot to a destination
