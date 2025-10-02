@@ -1,0 +1,29 @@
+services:
+  nav2:
+    # Build from your Dockerfile in the repo root
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cla-nav2:latest
+    container_name: nav2
+
+    # GUI + ROS env
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      # Switch to Cyclone DDS
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      # Sets Correct URDF Model
+      - TURTLEBOT3_MODEL=waffle
+
+    # Mounts: X11 socket for GUI + local folder for saving maps
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./data:/root/data
+
+    # Optional: bigger shared memory for Gazebo/rviz if you see crashes
+    # shm_size: "1g"
+
+    # Keep container interactive
+    tty: true
+    stdin_open: true
