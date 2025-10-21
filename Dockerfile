@@ -15,7 +15,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-humble-nav2-map-server \
     ros-humble-rmw-cyclonedds-cpp \
     xdg-utils vim-tiny nano \
+    git \ 
  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /root/ws/src && \
+    git clone  https://github.com/arshadlab/tb3_multi_robot.git -b humble /root/ws/src
 
 # Updates Motion Model YAML for AMCL
 RUN sed -i 's/^ *robot_model_type: "differential"/robot_model_type: "nav2_amcl::DifferentialMotionModel"/' \
