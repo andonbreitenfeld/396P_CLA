@@ -1,7 +1,7 @@
-image: my_map.pgm
+image: ahg_ars.pgm
 mode: trinary
 resolution: 0.05
-origin: [-3.56, -2.1, 0]
+origin: [-1.43, -8.4, 0]
 negate: 0
 occupied_thresh: 0.65
-free_thresh: 0.25
+free_thresh: 0.15

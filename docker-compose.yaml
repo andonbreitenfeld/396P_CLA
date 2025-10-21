@@ -1,6 +1,5 @@
 services:
   nav2-demo:
-    # Build from your Dockerfile in the repo root
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,7 +10,6 @@ services:
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
-      # Switch to Cyclone DDS
       - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
       # Sets Correct URDF Model
       - TURTLEBOT3_MODEL=waffle
@@ -19,7 +17,7 @@ services:
     # Mounts: X11 socket for GUI + local folder for saving maps
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - ./data:/root/data
+      - ./src/maps:/ros2_ws/src/maps
 
     # Keep container interactive
     tty: true
