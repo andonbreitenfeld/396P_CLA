@@ -1,11 +1,11 @@
 services:
-  nav2:
+  nav2-demo:
     # Build from your Dockerfile in the repo root
     build:
       context: .
       dockerfile: Dockerfile
     image: cla-nav2:latest
-    container_name: nav2
+    container_name: nav2-demo
 
     # GUI + ROS env
     environment:
@@ -20,9 +20,6 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./data:/root/data
-
-    # Optional: bigger shared memory for Gazebo/rviz if you see crashes
-    # shm_size: "1g"
 
     # Keep container interactive
     tty: true
