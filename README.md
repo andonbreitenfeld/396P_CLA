@@ -36,12 +36,16 @@ You’ll need 4 separate terminals:
 ## Gazebo
 ```
 docker compose exec nav2-demo bash
+```
+```
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
 
 ## RViz + SLAM
 ```
 docker compose exec nav2-demo bash
+```
+```
 ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
 ```
 
@@ -50,6 +54,8 @@ ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
 
 ```
 docker compose exec nav2-demo bash
+```
+```
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
 
@@ -58,6 +64,8 @@ ros2 run turtlebot3_teleop teleop_keyboard
 
 ```
 docker compose exec nav2-demo bash
+```
+```
 ros2 run nav2_map_server map_saver_cli -f /root/data/my_map
 ```
 
