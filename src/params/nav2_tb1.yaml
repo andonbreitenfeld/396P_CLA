@@ -1,4 +1,3 @@
-# /root/data/nav2_tb1.yaml
 amcl:
   ros__parameters:
     use_sim_time: true
@@ -6,31 +5,19 @@ amcl:
     odom_frame_id: tb1/odom
     global_frame_id: tb1/map
     scan_topic: tb1/scan
+
 map_server:
   ros__parameters:
     use_sim_time: true
-    yaml_filename: /root/data/my_map.yaml
-bt_navigator:
-  ros__parameters: { use_sim_time: true }
-controller_server:
-  ros__parameters:
-    use_sim_time: true
-    FollowPath.error_derivative_scale: 1.0
+    yaml_filename: /ros2_ws/src/maps/my_map.yaml
+    frame_id: tb1/map
+
 local_costmap:
   ros__parameters:
-    use_sim_time: true
     global_frame: tb1/odom
     robot_base_frame: tb1/base_link
+
 global_costmap:
   ros__parameters:
-    use_sim_time: true
     global_frame: tb1/map
     robot_base_frame: tb1/base_link
-planner_server:
-  ros__parameters: { use_sim_time: true }
-smoother_server:
-  ros__parameters: { use_sim_time: true }
-behavior_server:
-  ros__parameters: { use_sim_time: true }
-waypoint_follower:
-  ros__parameters: { use_sim_time: true }

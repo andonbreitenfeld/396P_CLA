@@ -5,24 +5,18 @@ services:
       dockerfile: Dockerfile
     image: cla-nav2:latest
     container_name: nav2-demo
-
-    # GUI + ROS env
+  
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
       - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-      # Sets Correct URDF Model
       - TURTLEBOT3_MODEL=waffle
       - TB1_PARAMS=/ros2_ws/src/params/nav2_tb1.yaml
-      - TB2_PARAMS=/ros2_ws/src/params/nav2_tb1.yaml
+      - TB2_PARAMS=/ros2_ws/src/params/nav2_tb2.yaml
       - DEFAULT_MAP=/ros2_ws/src/maps/my_map.yaml
-
-
-    # Mounts: X11 socket for GUI + local folder for saving maps
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./src/maps:/ros2_ws/src/maps
-
-    # Keep container interactive
+      - ./src/params:/ros2_ws/src/params
     tty: true
     stdin_open: true
