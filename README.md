@@ -35,13 +35,13 @@ You’ll need 4 separate terminals:
 ## Stage 1 - SLAM        `
 ## Gazebo
 ```
-docker compose exec nav2 bash
+docker compose exec nav2-demo bash
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
 
 ## RViz + SLAM
 ```
-docker compose exec nav2 bash
+docker compose exec nav2-demo bash
 ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
 ```
 
@@ -49,7 +49,7 @@ ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
 - Navigate through simulated environment using keyboard to fill the occupancy map in RViz
 
 ```
-docker compose exec nav2 bash
+docker compose exec nav2-demo bash
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
 
@@ -57,7 +57,7 @@ ros2 run turtlebot3_teleop teleop_keyboard
 - Once occupancy map is full, save it
 
 ```
-docker compose exec nav2 bash
+docker compose exec nav2-demo bash
 ros2 run nav2_map_server map_saver_cli -f /root/data/my_map
 ```
 
@@ -72,7 +72,7 @@ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 - Start Nav2 with saved map:
 
 ```
-ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$(pwd)/data/my_map.yaml
+ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=true map:=/root/data/my_map.yaml
 ```
 
 ## In Rviz
