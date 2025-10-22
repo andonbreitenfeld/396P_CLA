@@ -27,5 +27,17 @@ RUN sed -i 's/^ *robot_model_type: "differential"/robot_model_type: "nav2_amcl::
 # Auto-source ROS in interactive shells
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc
 
+# --- Add tmux for terminal automation ---
+RUN apt-get update && apt-get install -y tmux
+
+# --- Copy tmux config into the container ---
+COPY .tmux.conf /root/.tmux.conf
+
+# --- Copy tmux scripts into the container ---
+COPY survey_tmux.sh /root/survey_tmux.sh
+
+# --- Make them executable ---
+RUN chmod +x /root/*.sh
+
 # Sets default command to bash
 CMD ["bash"]

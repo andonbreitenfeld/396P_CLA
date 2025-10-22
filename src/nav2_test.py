@@ -6,6 +6,7 @@ from nav2_simple_commander.robot_navigator import BasicNavigator
 from geometry_msgs.msg import PoseStamped
 from tf_transformations import quaternion_from_euler
 import math
+import time
 
 def create_pose_stamped(navigator, x, y, theta):
     q_x, q_y, q_z, q_w = quaternion_from_euler(0.0, 0.0, theta)
@@ -38,13 +39,10 @@ def main():
         create_pose_stamped(nav, 8.0, 4.5, math.radians(270)),
         create_pose_stamped(nav, 8.0, 1.0, math.radians(180)),
     ]
-
     while rclpy.ok():
         nav.followWaypoints(waypoints)
-
-        while not nav.isTaskComplete():
-            pass  # wait until done
-
+        while not nav.isTaskComplete() and rclpy.ok():
+            time.sleep(0.1)
 
     rclpy.shutdown()
 
