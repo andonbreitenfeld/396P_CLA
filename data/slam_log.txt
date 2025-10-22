@@ -1,0 +1,71 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2025-10-21-07-40-40-976183-c691f89eb03e-46
+[INFO] [launch]: Default logging verbosity is set to INFO
+urdf_file_name : turtlebot3_waffle.urdf
+[INFO] [launch.user]: 🚀 Launching Gazebo...
+urdf_file_name : turtlebot3_waffle.urdf
+urdf_file_name : turtlebot3_waffle.urdf
+[INFO] [launch.user]: 📡 Launching Cartographer SLAM...
+[INFO] [launch.user]: 🎮 Starting Teleop keyboard control...
+[INFO] [gzserver-1]: process started with pid [84]
+[INFO] [gzclient-2]: process started with pid [86]
+[INFO] [robot_state_publisher-3]: process started with pid [88]
+[INFO] [spawn_entity.py-4]: process started with pid [90]
+[INFO] [bash-5]: process started with pid [92]
+[ERROR] [bash-5]: process has died [pid 92, exit code 2, cmd 'bash -c until ros2 topic list | grep -q /clock; do echo "⏳ Waiting for Gazebo clock..."; sleep 1; done; echo "✅ Gazebo clock detected!"'].
+[INFO] [cartographer_node-6]: process started with pid [94]
+[INFO] [cartographer_occupancy_grid_node-7]: process started with pid [96]
+[INFO] [rviz2-8]: process started with pid [98]
+[INFO] [teleop_keyboard-9]: process started with pid [100]
+[bash-5] /bin/sh: 1: Syntax error: "do" unexpected
+[robot_state_publisher-3] [INFO] [1761032441.774166160] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-3] [INFO] [1761032441.774200451] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-3] [INFO] [1761032441.774205082] [robot_state_publisher]: got segment base_scan
+[robot_state_publisher-3] [INFO] [1761032441.774207874] [robot_state_publisher]: got segment camera_depth_frame
+[robot_state_publisher-3] [INFO] [1761032441.774210530] [robot_state_publisher]: got segment camera_depth_optical_frame
+[robot_state_publisher-3] [INFO] [1761032441.774213309] [robot_state_publisher]: got segment camera_link
+[robot_state_publisher-3] [INFO] [1761032441.774216015] [robot_state_publisher]: got segment camera_rgb_frame
+[robot_state_publisher-3] [INFO] [1761032441.774218612] [robot_state_publisher]: got segment camera_rgb_optical_frame
+[robot_state_publisher-3] [INFO] [1761032441.774221348] [robot_state_publisher]: got segment caster_back_left_link
+[robot_state_publisher-3] [INFO] [1761032441.774223988] [robot_state_publisher]: got segment caster_back_right_link
+[robot_state_publisher-3] [INFO] [1761032441.774226474] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-3] [INFO] [1761032441.774231508] [robot_state_publisher]: got segment wheel_left_link
+[robot_state_publisher-3] [INFO] [1761032441.774233960] [robot_state_publisher]: got segment wheel_right_link
+[cartographer_node-6] [INFO] [1761032441.783683848] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/turtlebot3_cartographer/config/turtlebot3_lds_2d.lua' for 'turtlebot3_lds_2d.lua'.
+[cartographer_node-6] [INFO] [1761032441.783833817] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/map_builder.lua' for 'map_builder.lua'.
+[cartographer_node-6] [INFO] [1761032441.783842703] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/map_builder.lua' for 'map_builder.lua'.
+[cartographer_node-6] [INFO] [1761032441.783863564] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/pose_graph.lua' for 'pose_graph.lua'.
+[cartographer_node-6] [INFO] [1761032441.783869629] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/pose_graph.lua' for 'pose_graph.lua'.
+[cartographer_node-6] [INFO] [1761032441.783944756] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/trajectory_builder.lua' for 'trajectory_builder.lua'.
+[cartographer_node-6] [INFO] [1761032441.783951724] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/trajectory_builder.lua' for 'trajectory_builder.lua'.
+[cartographer_node-6] [INFO] [1761032441.783967420] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/trajectory_builder_2d.lua' for 'trajectory_builder_2d.lua'.
+[cartographer_node-6] [INFO] [1761032441.783975393] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/trajectory_builder_2d.lua' for 'trajectory_builder_2d.lua'.
+[cartographer_node-6] [INFO] [1761032441.784029326] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/trajectory_builder_3d.lua' for 'trajectory_builder_3d.lua'.
+[cartographer_node-6] [INFO] [1761032441.784035672] [cartographer logger]: I1021 07:40:41.000000    94 configuration_file_resolver.cc:41] Found '/opt/ros/humble/share/cartographer/configuration_files/trajectory_builder_3d.lua' for 'trajectory_builder_3d.lua'.
+[rviz2-8] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[cartographer_node-6] [INFO] [1761032441.789505825] [cartographer logger]: I1021 07:40:41.000000    94 map_builder_bridge.cpp:136] Added trajectory with ID '0'.
+[rviz2-8] [INFO] [1761032441.873078038] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-8] [INFO] [1761032441.873158854] [rviz2]: OpenGl version: 4.1 (GLSL 4.1)
+[teleop_keyboard-9] Traceback (most recent call last):
+[teleop_keyboard-9]   File "/opt/ros/humble/lib/turtlebot3_teleop/teleop_keyboard", line 33, in <module>
+[teleop_keyboard-9]     sys.exit(load_entry_point('turtlebot3-teleop==2.3.3', 'console_scripts', 'teleop_keyboard')())
+[teleop_keyboard-9]   File "/opt/ros/humble/lib/python3.10/site-packages/turtlebot3_teleop/script/teleop_keyboard.py", line 144, in main
+[teleop_keyboard-9]     settings = termios.tcgetattr(sys.stdin)
+[teleop_keyboard-9] termios.error: (25, 'Inappropriate ioctl for device')
+[ERROR] [teleop_keyboard-9]: process has died [pid 100, exit code 1, cmd '/opt/ros/humble/lib/turtlebot3_teleop/teleop_keyboard --ros-args'].
+[rviz2-8] [INFO] [1761032441.915467347] [rviz2]: Stereo is NOT SUPPORTED
+[spawn_entity.py-4] [INFO] [1761032441.939554874] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-4] [INFO] [1761032441.939752885] [spawn_entity]: Loading entity XML from file /opt/ros/humble/share/turtlebot3_gazebo/models/turtlebot3_waffle/model.sdf
+[spawn_entity.py-4] [INFO] [1761032441.940253262] [spawn_entity]: Waiting for service /spawn_entity, timeout = 30
+[spawn_entity.py-4] [INFO] [1761032441.940412616] [spawn_entity]: Waiting for service /spawn_entity
+[spawn_entity.py-4] [ERROR] [1761032471.992571453] [spawn_entity]: Service /spawn_entity unavailable. Was Gazebo started with GazeboRosFactory?
+[spawn_entity.py-4] [ERROR] [1761032471.993645599] [spawn_entity]: Spawn service failed. Exiting.
+[ERROR] [spawn_entity.py-4]: process has died [pid 90, exit code 1, cmd '/opt/ros/humble/lib/gazebo_ros/spawn_entity.py -entity waffle -file /opt/ros/humble/share/turtlebot3_gazebo/models/turtlebot3_waffle/model.sdf -x -2.0 -y -0.5 -z 0.01 --ros-args'].
+[gzserver-1] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+[gzserver-1] ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+[gzserver-1] ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+[gzserver-1] ALSA lib conf.c:5701:(snd_config_expand) Evaluate error: No such file or directory
+[gzserver-1] ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+[gzserver-1] AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory

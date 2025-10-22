@@ -16,6 +16,13 @@ services:
       # Sets Correct URDF Model
       - TURTLEBOT3_MODEL=waffle
 
+      # Force software rendering for OpenGL (fixes some GPU issues) (faster gazebo spinup)
+      # Uses CPU instead of GPU for rendering, slower but more hardware agnostic
+      - LIBGL_ALWAYS_SOFTWARE=1
+      - MESA_GL_VERSION_OVERRIDE=4.1
+      - MESA_GLSL_VERSION_OVERRIDE=410
+
+
     # Mounts: X11 socket for GUI + local folder for saving maps
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
