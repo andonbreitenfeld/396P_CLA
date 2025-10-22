@@ -1,12 +1,12 @@
 #!/bin/bash
-# TurtleBot3 Navigation2 Survey Demo
+# Clean Navigation2 demo with guide tab and minimal console noise
 
-SESSION="survey_session"
+SESSION="nav_session"
 
 # Kill any existing session
 tmux kill-session -t $SESSION 2>/dev/null
 
-# Start new tmux session detached
+# Start a new tmux session detached
 tmux new-session -d -s $SESSION
 
 # --- Window 0: Guide + Quit Control ---
@@ -19,21 +19,19 @@ SESSION_NAME=$SESSION
 
 cat <<EOF
 =====================================================================
-              TurtleBot3 Navigation2 Survey Demo Guide
+                TurtleBot3 Navigation2 Demo Guide
 =====================================================================
 
-This tmux session has 4 tabs (windows):
+This tmux session has 3 tabs (windows):
   [0] guide     - Instructions + quit control
-  [1] gazebo    - Gazebo house world simulation
+  [1] gazebo    - Gazebo simulation environment
   [2] nav2      - Navigation2 stack (AMCL + RViz)
-  [3] test      - Python Nav2 test script
 
 ---------------------------------------------------------------
 Navigation Controls:
   Alt + 0 -> guide (current)
   Alt + 1 -> gazebo
   Alt + 2 -> nav2
-  Alt + 3 -> test_script
 ---------------------------------------------------------------
 
 To quit the entire Navigation2 demo:
@@ -58,7 +56,7 @@ tmux new-window -t $SESSION:1 -n 'gazebo'
 tmux send-keys -t $SESSION:1 "bash -c '
 source /opt/ros/humble/setup.bash
 clear
-ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 '" C-m
 
 # --- Window 2: Nav2 Stack ---
@@ -67,21 +65,9 @@ tmux send-keys -t $SESSION:2 "bash -c '
 source /opt/ros/humble/setup.bash
 clear
 echo \"Waiting for /odom topic...\"
-until ros2 topic list | grep -q \"/odom\"; do sleep 0.5; done
-echo \"Launching Nav2 with house map...\"
-ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=true map:=./maps/house_map.yaml
-'" C-m
-
-# --- Window 3: Python Nav2 Test Script ---
-tmux new-window -t $SESSION:3 -n 'test_script'
-tmux send-keys -t $SESSION:3 "bash -c '
-source /opt/ros/humble/setup.bash
-clear
-echo \"Waiting for /odom topic...\"
-until ros2 topic list | grep -q \"/odom\"; do sleep 0.5; done
-echo \"Waiting briefly before running nav2_test.py...\"
-sleep 3
-python3 ./nav2_test.py
+until ros2 topic list | grep -q \"/odom\"; do sleep 1; done
+echo \"Launching Nav2 with saved map...\"
+ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=true map:=./maps/my_map.yaml
 '" C-m
 
 # Attach user to the guide tab

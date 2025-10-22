@@ -34,10 +34,12 @@ RUN apt-get update && apt-get install -y tmux
 COPY .tmux.conf /root/.tmux.conf
 
 # --- Copy tmux scripts into the container ---
-COPY survey_tmux.sh /root/survey_tmux.sh
+COPY scripts/slam_tmux.sh /root/scripts/slam_tmux.sh
+COPY scripts/nav_tmux.sh /root/scripts/nav_tmux.sh
+COPY scripts/survey_tmux.sh /root/scripts/survey_tmux.sh
 
 # --- Make them executable ---
-RUN chmod +x /root/*.sh
+RUN chmod +x /root/scripts/*.sh
 
 # Sets default command to bash
 CMD ["bash"]
