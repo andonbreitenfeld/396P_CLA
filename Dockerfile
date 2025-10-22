@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-humble-nav2-map-server \
     ros-humble-rmw-cyclonedds-cpp \
     xdg-utils vim-tiny nano \
+    ros-humble-nav2-simple-commander \
+    ros-humble-tf-transformations \
+    python3-transforms3d \
  && rm -rf /var/lib/apt/lists/*
 
 # Updates Motion Model YAML for AMCL
