@@ -1,7 +1,7 @@
 # CLA — ME 396P Nav2 Demo
 
 This demo runs the **TurtleBot3 Navigation2** stack in simulation using **Docker** and **tmux automation scripts**.  
-The workflow is designed to run entirely within one container session — you enter the container once, perform SLAM to create a map, then run Navigation2 using that saved map.
+The workflow is designed to run entirely within one container session — you enter the container once, perform SLAM to create a map, then run Navigation2 using that saved map. You can then run Nav2 with a custom python script for and automated survey demo.
 
 ---
 
@@ -18,7 +18,7 @@ docker compose version
 ```
 
 ### Environment Requirements
-- Host: **Ubuntu** system with X11 display enabled (default on most desktops)
+- Host: X11 display enabled (default on most desktops)
 - GPU acceleration is optional; CPU simulation is sufficient for this demo.
 
 ---
@@ -43,20 +43,29 @@ This builds the container image and installs:
 - Navigation2 (Nav2)
 - Cartographer SLAM
 - tmux + automation scripts
-- Custom `.tmux.conf` for **Alt + number** shortcuts
 
 ### Enter the Container
 Once the container is running:
+
 ```bash
 docker exec -it nav2-demo bash
 ```
 
-You should now see:
+You should now see something like:
 ```
-root@<container_id>:/#
+root@<container_id>:/workspace/src#
 ```
 
+You are now inside the container’s shell environment, starting in the **`workspace/src`** directory.
+
 All subsequent steps take place **inside this container**.
+
+To leave the container at any time, simply type:
+```bash
+exit
+```
+
+This will return you to your host machine’s terminal.
 
 ---
 
@@ -65,11 +74,11 @@ All subsequent steps take place **inside this container**.
 ### Launch SLAM
 Inside the container:
 ```bash
-bash /root/slam_tmux.sh
+bash /root/scripts/slam_tmux.sh
 ```
 This starts a tmux session that automatically launches:
 - Gazebo simulation
-- Cartographer SLAM (RViz + mapping)
+- Cartographer (SLAM) + RViz
 - Teleop control
 - Map saver utility
 
@@ -78,20 +87,18 @@ This starts a tmux session that automatically launches:
 | Tab | Name | Description |
 |------|------|-------------|
 | [0] | **guide** | Instructions + quit control (`q`) |
-| [1] | **gazebo** | Gazebo Launch/Run |
-| [2] | **slam** | Cartographer SLAM + RViz Launch/Run|
+| [1] | **gazebo** | Gazebo launch |
+| [2] | **slam** | Cartographer (SLAM) + RViz launch|
 | [3] | **teleop** | Keyboard control (must be active tab to drive) |
 | [4] | **map_saver** | Press **Enter** anytime to save map |
 
 ### Navigating Between Tabs
-
-Use the **Alt + number** shortcuts:
+Click the tab name at bottom of the terminal **OR** use the **Alt + #** shortcuts:
+- **Alt + 0** → guide
 - **Alt + 1** → gazebo  
 - **Alt + 2** → slam  
 - **Alt + 3** → teleop  
 - **Alt + 4** → map_saver  
-- **Alt + 0** → guide
-- \**Clicking the tab name at bottom of terminal also works*
 
 ### Operating SLAM
 
@@ -135,28 +142,28 @@ After completing SLAM and saving the map, you can launch the Navigation2 stack.
 ### Launch Navigation2
 Inside the same container session:
 ```bash
-bash /root/nav_tmux.sh
+bash /root/scripts/nav_tmux.sh
 ```
 This starts a tmux session that launches:
-- Gazebo simulation (same world)
-- Navigation2 stack (AMCL, planner, RViz)
+- Gazebo simulation
+- Nav2 + RViz
 
-### Window Layout (Shown at Bottom of Terminal)
+### Tab Layout (Shown at Bottom of Terminal)
 
 | Tab | Name | Description |
 |------|------|-------------|
 | [0] | **guide** | Instructions + quit control (`q`) |
-| [1] | **gazebo** | Simulation world |
-| [2] | **nav2** | Navigation2 stack (AMCL + Planner + RViz) |
+| [1] | **gazebo** | Gazebo launch|
+| [2] | **nav2** | Nav2 + RViz launch |
 
 ### Navigating Between Tabs
 
 Use the **Alt + number** shortcuts:
-- **Alt + 1** → Gazebo  
-- **Alt + 2** → Nav2  
-- **Alt + 0** → Guide  
+- **Alt + 0** → guide  
+- **Alt + 1** → gazebo  
+- **Alt + 2** → nav2  
 
-### Operating Navigation2
+### Operating Nav2
 
 1. Start in **[0] guide** to review instructions.
 2. Wait for **Gazebo** and **RViz** to pop-up.  
@@ -167,19 +174,62 @@ Use the **Alt + number** shortcuts:
        ![Nav Setup Example](Images/Nav_Setup_Example.png)
 3. In **RViz** use the **2D Pose Estimate** tool to set the robot's initial pose:
    - Click the **2D Pose Estimate** tool in the top tool bar.
-   - Click and drag on the map to indicate the robot’s approximate position and heading (can use )
-   - Use the **2D Pose Estimate** tool to initialize the robot’s pose based on the saved map (can reference **Gazebo** for rough initial pose).  
+   - Click and drag on the map to indicate the robot’s approximate position and heading (can reference **Gazebo** for rough initial pose).
 4. Once localization is stable, use the **Nav2 Goal** tool to send navigation goals:
    - Click the **Nav2 Goal** button in the top toolbar.
    - Click and drag on the desired destination on the map to define the goal position and orientation.
    - The robot will plan a path (displayed as a colored line) and begin moving toward that goal.
    - This can be repeated to send additional goals.
-5. You can monitor progress with **Gazebo** and **RViz**
+5. You can monitor progress with **Gazebo** and **RViz**.
    - **Gazebo** shows the robot "physically" moving around the simulated world.
    - **RVIZ** shows the planned path, current postion, local costmap, and goal status updates in real time.
 6. When finished, return to **[0] guide** terminal and enter `q` to quit the session.  
    This stops all processes and returns you to the container shell.
-7. To exit the container:
+
+## Stage 3 — Automated Navigation Survey
+
+After manually tasking your in Nav2, you can now see how you can automate that process with Python! 
+
+### Launch Nav2 + Survey
+Inside the same container session:
+```bash
+bash /root/scripts/survey.sh
+```
+This starts a tmux session that launches:
+- Gazebo simulation
+- Nav2 + RViz
+- Python survey script 
+
+### Tab Layout (Shown at Bottom of Terminal)
+
+| Tab | Name | Description |
+|------|------|-------------|
+| [0] | **guide** | Instructions + quit control (`q`) |
+| [1] | **gazebo** | Gazebo launch|
+| [2] | **nav2** | Nav2 + RViz launch |
+| [3] | **survey** | Run survey script |
+
+### Navigating Between Tabs
+
+Use the **Alt + number** shortcuts:
+- **Alt + 0** → guide  
+- **Alt + 1** → gazebo  
+- **Alt + 2** → nav2  
+- **Alt + 3** → survey
+
+### Operating Nav2 Survey
+
+1. Start in **[0] guide** to review instructions.
+2. Wait for **Gazebo** and **RViz** to pop-up.  
+   - **RViz** should now display the saved map from the SLAM stage.
+   - View **RViz** and **Gazebo** side by side (like in Stage 2)
+   - *If **Gazebo** is hung up, just wait, since we are now using a larger map, can take longer to boot up.*
+3. You can monitor **[3] survey** terminal for tasking updates, however the survey should start automatically for you to watch!
+   - **Gazebo** shows the robot "physically" moving around the simulated world.
+   - **RVIZ** shows the planned path, current postion, local costmap, and goal status updates in real time.
+4. When finished, return to **[0] guide** terminal and enter `q` to quit the session.  
+   This stops all processes and returns you to the container shell.
+5. To exit the container:
    ```
    exit
    ```
@@ -194,12 +244,14 @@ Use the **Alt + number** shortcuts:
 | `docker-compose.yml` | Defines container runtime and GUI configuration |
 | `.tmux.conf` | Defines Alt + number keybindings and status bar layout |
 | `slam_tmux.sh` | Automated SLAM (Gazebo + Cartographer + Teleop + Map Saver) |
-| `nav_tmux.sh` | Automated Navigation2 (Gazebo + AMCL + Planner + RViz) |
+| `nav_tmux.sh` | Automated Navigation2 (Gazebo + Nav2) |
+| `survey_tmux.sh`| Automated Survey (Gazebo + Nav2 + python script) |
+| `nav2_test.py` | Python script that sends initial and goal poses |
 
 ---
 
 ## Summary
 
 This workflow keeps all operations within a single container session.  
-You build once, enter once, and use tmux automation to switch seamlessly between SLAM and Navigation without managing multiple terminals.  
-Mapping, saving, localization, and navigation are all handled through structured tmux windows with simple keyboard shortcuts.
+You build once, enter once, and use tmux automation to transition seamlessly between SLAM and Navigation without managing multiple terminals.  
+Mapping, saving, localization, navigation, and a automatic survey demo are all handled through structured tmux windows with simple keyboard shortcuts.
