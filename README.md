@@ -193,7 +193,7 @@ After manually tasking your in Nav2, you can now see how you can automate that p
 ### Launch Nav2 + Survey
 Inside the same container session:
 ```bash
-bash /root/scripts/survey.sh
+bash /root/scripts/survey_tmux.sh
 ```
 This starts a tmux session that launches:
 - Gazebo simulation
